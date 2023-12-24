@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>home</title>
+  </head>
+  <style>
+    img {
+      height: 100%;
+      width: 100%;
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      background-size: cover;
+    }
+    .card {
+      margin: 12px 14px;
+    }
+  </style>
+  <body>
+    <%- include("./partials/navbar") %>
+    <div class="container mt-4">
+      <div class="row row-cols-2">
+        <% blogs.forEach(blogs => { %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+          <div class="card" style="width: 18rem">
+            <img
+              src="<%= blogs.coverImageURL %>"
+              class="card-img-top cover"
+              alt="Image"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blogs.title.slice(0,50) %>...</h5>
+              <!-- <p class="card-text"><%= blogs.body.slice(0,50) %>....</p> -->
+              <a href="/blog/<%= blogs._id %>" class="btn btn-primary">view</a>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <%- include("./partials/script") %>
+  </body>
+</html>

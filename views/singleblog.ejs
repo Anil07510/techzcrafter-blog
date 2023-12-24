@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head") %>
+    <title>blog</title>
+  </head>
+  <body>
+    <%- include("./partials/navbar") %>
+    <div class="container">
+      <h2><%= blog.title %></h2>
+      <img
+        class="img-fluid rounded"
+        src="<%= blog.coverImageURL %>"
+        width="400px"
+      />
+      <p><%= blog.body %></p>
+    </div>
+    <div class="container">
+      <h1>Hello</h1>
+      <img src="<%= blog.createdBy.profileImageURL %>" width="50px" /> <%=
+      blog.createdBy.fullName %>
+    </div>
+    <div class="comments container">
+      <h3>comment here (<%= allcomments.length %>)</h3>
+      <form action="/blog/comment/<%= blog._id %>" method="post">
+        <input type="text" name="content" class="form-control" />
+        <button class="btn btn-primary mt-3" type="submit">submit</button>
+      </form>
+    </div>
+    <div class="container">
+      <% allcomments.forEach(allcomments => { %>
+      <div>
+        <pre><%= allcomments.content %></pre>
+      </div>
+      <% }) %>
+    </div>
+    <%- include("./partials/script") %>
+  </body>
+</html>
